@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from random import *
 
 Cl= {} #country label
-Cl[0] = ['Germany', 0, 12050, 0.8] #Name of country, amount infected, population size, threshold
+Cl[0] = ['Germany', 0, 12050, 0.8] #[Name of country, amount infected, population size, threshold] in that order
 Cl[1] = ['Belgium', 0, 14000, 0.78] 
 Cl[2] = ['Czech Republic', 0, 9200, 0.9]
 Cl[3] = ['Finland', 0, 1502, 0.76]
@@ -16,7 +16,9 @@ Cl[9] = ['Malta', 0, 65474, 0.8]
 Cl[10] = ['Norway', 0, 643864, 0.95]
 
 
-
+'''
+plots graph
+'''
 
 
 G = nx.Graph()
@@ -230,7 +232,7 @@ def main(G, cities, Cl, d_places):
             for j in G.neighbors(f):
                 if Cl[j][1]/Cl[j][2] > Cl[f][3]:
                     print ("Ban transportation between", Cl[f][0], "and",Cl[j][0])
-                    G.remove_edge(f, j)
+                    G.remove_edge(f, j) #bans flight between two countries
     print("")               
     print("Could only travel about", a, "times.")
     new_lab = {}
