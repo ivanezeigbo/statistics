@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from random import *
 
 Cl= {} #country label
-Cl[0] = ['Germany', 0, 12050, 0.8]
+Cl[0] = ['Germany', 0, 12050, 0.8] #Name of country, amount infected, population size, threshold
 Cl[1] = ['Belgium', 0, 14000, 0.78] 
 Cl[2] = ['Czech Republic', 0, 9200, 0.9]
 Cl[3] = ['Finland', 0, 1502, 0.76]
