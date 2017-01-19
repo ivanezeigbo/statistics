@@ -104,7 +104,8 @@ def hamiltonian(G, cities):#Hamiltonian cycle
     for m in start:
         nodes = cities[:]
         ct = [s_vertex, m]
-        nodes.remove(m)
+        if m in nodes:
+            nodes.remove(m)
         intera(m, nodes, ct, route)
                    
     return route
