@@ -189,7 +189,7 @@ def flow(G, cities):
             print(Cl[i][0])
         print("")
             
-def disease(y, N):
+def disease(y, N): #Differential equation showing change in infected people
     J = round(0.0001*(y)*(N-y), 0)
     return int(J)
 
