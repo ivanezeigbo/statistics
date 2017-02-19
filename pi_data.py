@@ -64,7 +64,7 @@ for i in range(4, 16):
 
 plt.plot(x1, y1, 'b')
 plt.plot(x1, y2, 'r')
-plt.errorbar(x1, y1, yerr = y_error, ecolor = 'k', elinewidth = 2, capsize = 3)
+plt.errorbar(x1, y1, yerr = y_error, ecolor = 'k', elinewidth = 2, capsize = 3, fmt = 'o')
 plt.xlabel("Size of dataset (in log-scale)")
 plt.ylabel("Value of pi")
 plt.legend(['Estimated Pi', 'Actual Pi Value (to the 15th d.p.)'])
