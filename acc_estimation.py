@@ -142,7 +142,5 @@ plt.show()
 non_time = (lin_x**2 * timeslop2) + (lin_x * timeslop1) + timeint
 print("Calculated time taken to run this large N is about", int(round(non_time/60)), "minutes.")
 
-
-
 #non_x = (math.sqrt(slope1_1**2 - (4 * slope1_2 * (intercept1 - dp)))- slope1_1)/ (2* slope1_2) #The Quadratic Formula
 #print('\nFor a nonlinear relationship, we need a data size of the order, e (natural number) to the power of', round(non_x), 'that is about', round(math.exp(non_x)), 'darts.')
