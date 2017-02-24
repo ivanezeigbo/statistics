@@ -4,6 +4,7 @@ import math
 import matplotlib.pyplot as plt
 import scipy.stats as st
 import numpy as np
+from time import clock
 
 x, y = eval(input("What is the coordinate of the center of the board? Please represent in the form: x, y " ))
 rec_width = float(input("What is the width of the rectangle " ))
@@ -34,6 +35,7 @@ while not Valid:
 
 
 def Monte_Carlo(a, b, w, h, r, x, y, n):
+    start = clock()
     A = 0
     for i in range(n):
         x_1 = random.uniform(a - w/2, a + w/2)
@@ -41,12 +43,14 @@ def Monte_Carlo(a, b, w, h, r, x, y, n):
         if math.sqrt((x_1 - x)**2 + (y_1 - y)**2) <= r:
             A += 1
     pi = (A * w * h )/ ( n * r**2)
-    return pi
+    end = clock()
+    return pi, end - start
 x1 = []
 y1 = []
 y2 = []
 y_error = []
 accuracy = []
+timed = []
 #n_size = []
 trials = int(input("\nHow many trials do you want to run to estimate pi from each datasize? "))
 print("\nNow computing...\n")
@@ -59,10 +63,14 @@ for i in range(0, 18):
     Accuracy = 0
     n = 3**i
     pi = 0
+    Time = 0
     for ml in range(trials):
-             Pi = Monte_Carlo(x, y, rec_width, rec_height, radius, cir_x, cir_y, n)
+             Pi, time = Monte_Carlo(x, y, rec_width, rec_height, radius, cir_x, cir_y, n)
              pi += Pi
+             Time += time
     pi = pi/trials
+    Time = Time/trials
+    timed.append(Time)
     m = str(pi)
     Compare = True
     k = 0
@@ -105,6 +113,8 @@ plt.legend(['Accuracy Est.', 'Regression Line'])
 plt.title('Accuracy Estimation Against Data Size')
 plt.show()
 
+
+
 '''
 To attain an accuracy of 8 dec places - (or accuracy of 9)
 '''
@@ -116,6 +126,23 @@ Will not use this because the graph of accuracy is a quadratic graph; hence, non
 lin_x = (dp - intercept)/slope #used the equation of a line
 print('For a linear relationship, we need a data size of the order, e (natural number) to the power of', round(lin_x), 'that is about', round(math.exp(lin_x)), 'darts.')
 
+timeslop2, timeslop1, timeint = np.polyfit(x1, timed, 2)
+fit = np.polyfit(x1, timed, 2)
+pl = np.poly1d(fit)
 
-non_x = (math.sqrt(slope1_1**2 - (4 * slope1_2 * (intercept1 - dp)))- slope1_1)/ (2* slope1_2) #The Quadratic Formula
-print('\nFor a nonlinear relationship, we need a data size of the order, e (natural number) to the power of', round(non_x), 'that is about', round(math.exp(non_x)), 'darts.')
+plt.plot(x1, timed, x1, pl(x1))
+plt.plot(x1, timed)
+plt.xlabel('Data Size (in log scale)')
+plt.ylabel('Time')
+plt.legend(['Time Taken', 'NonLinear Regression'])
+plt.title('Time Against Data Size')
+plt.show()
+
+#Calculating time taken
+non_time = (lin_x**2 * timeslop2) + (lin_x * timeslop1) + timeint
+print("Calculated time taken to run this large N is about", int(round(non_time/60)), "minutes.")
+
+
+
+#non_x = (math.sqrt(slope1_1**2 - (4 * slope1_2 * (intercept1 - dp)))- slope1_1)/ (2* slope1_2) #The Quadratic Formula
+#print('\nFor a nonlinear relationship, we need a data size of the order, e (natural number) to the power of', round(non_x), 'that is about', round(math.exp(non_x)), 'darts.')
