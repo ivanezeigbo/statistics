@@ -25,5 +25,5 @@ neighbor.fit(x_trainset, y_trainset)
 
 new_val = neighbor.predict(x_testset)
 
-print("kNN classifirer reports:", neighbor, metrics.classification_report(y_testset, new_val))
+print("kNN classifirer reports: %s:\n%s\n" % (neighbor, metrics.classification_report(y_testset, new_val)))
 print("Confusion matrix is:", metrics.confusion_matrix(y_testset, new_val))
