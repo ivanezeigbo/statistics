@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 Digits = datasets.load_digits()
-Imglabels = [x for x in list(zip(Digits.images, Digits.target)) if x[1] == 7 or x[1] == 1]
+Imglabels = [x for x in list(zip(Digits.images, Digits.target)) if x[1] == 7 or x[1] == 3]
 for ind, (image, label) in enumerate(Imglabels[:4]):
     plt.subplot(2, 4, ind + 1)
     plt.axis('off')
