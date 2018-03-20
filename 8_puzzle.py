@@ -110,7 +110,7 @@ def solvePuzzle(n, state, heuristic, prnt):
             if current.goal():
                 return current
             openList.pop(index)
-            #current.__str__()     #prints grid of current state of board
+            current.__str__()     #prints grid of current state of board
             closedList.append(current)
             
 
